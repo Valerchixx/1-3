@@ -1,41 +1,40 @@
 let userTable = document.getElementById('userTable');
 
-
 function DataTable(config, data) {
-  let Table = document.createElement('table');
-  Table.classList.add('table')
-  let thead = document.createElement('thead')
-  let Row = document.createElement('tr');
+  let table = document.createElement('table');
+  table.classList.add('table')
+  let tHead = document.createElement('thead')
+  let row = document.createElement('tr');
 
-  Table.appendChild(thead);
-  thead.appendChild(Row);
+  table.appendChild(tHead);
+  tHead.appendChild(row);
 
-  for(let i = 0;i < config.columns.length;i++){
-      let cellTH = document.createElement('th');
-      cellTH.innerHTML = config.columns[i].title;
-      Row.appendChild(cellTH);
-      cellTH.classList.add('Th')
+  for(let i = 0; i < config.columns.length; i++){
+      let cellTh = document.createElement('th');
+      cellTh.innerHTML = config.columns[i].title;
+      row.appendChild(cellTh);
+      cellTh.classList.add('Th')
     }
 
-  let tbody = document.createElement('tbody');
+  let tBody = document.createElement('tbody');
 
-  Table.insertAdjacentElement('beforeend', tbody);
+  table.insertAdjacentElement('beforeend', tBody);
 
   for(i = 0; i < data.length;i++){
-    let Rows = document.createElement('tr');
-    Rows.classList.add('rows')
+    let rows = document.createElement('tr');
+    rows.classList.add('rows')
     for(j = 0;j < Object.keys(data[i]).length;j++){
       let cell = document.createElement('td');
       cell.innerHTML = Object.values(data[i])[j];
-      Rows.appendChild(cell);
+      rows.appendChild(cell);
       cell.classList.add('bord')
     }
-    tbody.appendChild(Rows)
+    tBody.appendChild(rows)
   }
-userTable.appendChild(Table)
+userTable.appendChild(table)
 }
 
- 
+
 const config1 = {
    parent: '#usersTable',
    columns: [
@@ -45,10 +44,9 @@ const config1 = {
      {title: 'Возраст', value: 'age'},
    ]
 };
- 
+
 const users = [
    {id: 30050, name: 'Вася', surname: 'Петров', age: 12},
    {id: 30051, name: 'Вася', surname: 'Васечкин', age: 15},
 ];
- 
 DataTable(config1,users)
